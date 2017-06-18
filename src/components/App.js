@@ -1,25 +1,28 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React from "react";
 
-class Experiment extends Component {
-
-    componentWillMount() {
-        console.log("This will mount");
+class Button extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            count: 0,
+        };
     }
 
-    componentDidMount() {
-        console.log("This did mount");
-    }
-
-    componentWillUnmount() {
-        console.log("This will unmount");
+    updateCount() {
+        this.setState((prevState, props) => {
+            return { count: prevState.count + 1 }
+        });
     }
 
     render() {
-        console.log("I am just rendering like a boss");
-        return <div > I got rendered! < /div>;
-    }
+        return ( < button onClick = {
+                () => this.updateCount()
+            } >
+            Clicked: { this.state.count }
+            times < /button>
 
+        );
+    }
 }
 
-export default Experiment
+export default Button
